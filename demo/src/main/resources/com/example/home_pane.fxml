@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+
+<VBox fx:id="home_pane_vbox" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.home_controller">
+    <children>
+        <Label text="WSAD -> movement"/>
+        <Label text="SPACE -> pause, resume, restart game after win/death"/>
+    </children>
+</VBox>

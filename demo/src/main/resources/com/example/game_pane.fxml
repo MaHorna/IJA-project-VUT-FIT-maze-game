@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
+
+<Pane fx:id="game_pane_hold" onKeyPressed="#key_pressed_event" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.game_controller">
+    <children>
+        <Canvas fx:id="game_canvas" width="5000" height="5000"/>
+    </children>
+</Pane>

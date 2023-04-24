@@ -55,7 +55,15 @@ public class replay_controller {
             key_view.setLayoutY(key.y*cell_size);
             key.image_view = key_view;
             replay_pane_hold.getChildren().addAll(key_view);
-        }        
+        }
+        for (int i = 0; i < replay.cherry_list.size(); i++) {
+            triple cherry = replay.cherry_list.get(i);
+            ImageView cherry_view = new ImageView(new Image(getClass().getResource("images/game/cherry.png").toString(), cell_size/2, cell_size/2, true, true));
+            cherry_view.setLayoutX(cherry.x*cell_size+10);
+            cherry_view.setLayoutY(cherry.y*cell_size+10);
+            cherry.image_view = cherry_view;
+            replay_pane_hold.getChildren().addAll(cherry_view);
+        }
         for (int i = 0; i < replay.ghost_list.size(); i++) {
             ghost ghost = replay.ghost_list.get(i);
             ImageView ghost_view = new ImageView(new Image(getClass().getResource("images/game/ghost.png").toString(), cell_size, cell_size, true, true));

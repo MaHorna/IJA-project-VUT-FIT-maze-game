@@ -22,10 +22,12 @@ public class game {
     triple end;      //stores end position
     player player;   //stores player info
     List<triple> key_list = new ArrayList<triple>(); //stores key info
+    List<triple> cherry_list = new ArrayList<triple>(); //stores candy info
     List<ghost> ghost_list = new ArrayList<ghost>(); //stores ghost info
     double simulation_speed = 10.0; //tick every x miliseconds
     int cell_size = 40;
     Timeline timeline;
+    double play_time = 0;
 
     public game(String file_path) throws IOException {
         this.file_path = file_path;
@@ -49,6 +51,9 @@ public class game {
             }
             if (c == 'K') { //key
                 key_list.add(new triple(i, row_index, false));
+            }
+            if (c == '.') { //key
+                cherry_list.add(new triple(i, row_index, false));
             }
             if (c == 'G') { //ghost
                 ghost_list.add(new ghost(i, row_index, 0));
@@ -112,13 +117,19 @@ public class game {
     void do_sim_step() {
         player.player_move(this);
         file_manager.add_update_delimeter(this); //after player move update
+        player.player_step(this);
+        file_manager.add_update_delimeter(this); //after player move update
         player.player_check_keys(this);
-        file_manager.add_update_delimeter(this); ///after key pickup 
+        file_manager.add_update_delimeter(this); ///after key pickup
+        player.player_check_cherries(this);
+        file_manager.add_update_delimeter(this); ///after cherry pickup
         player.player_check_end(this);
         for (ghost ghost : ghost_list) {
             ghost.ghost_move(this);
         }
         player.player_check_ghosts(this);
         file_manager.add_section_delimeter(this); //end update section
+        play_time++;
+        System.out.println("Play time: " + play_time/100);
     }
 }

@@ -62,7 +62,17 @@ public class game_controller {
             key.image_view = key_view;
             game_pane_hold.getChildren().addAll(key_view);
             file_manager.add_triplet(game, key.x, key.y, true);
-        }        
+        }
+        file_manager.add_section_delimeter(game);
+        for (int i = 0; i < game.cherry_list.size(); i++) {
+            triple cherry = game.cherry_list.get(i);
+            ImageView cherry_view = new ImageView(new Image(getClass().getResource("images/game/cherry.png").toString(), cell_size/2, cell_size/2, true, true));
+            cherry_view.setLayoutX(cherry.x*cell_size+10);
+            cherry_view.setLayoutY(cherry.y*cell_size+10);
+            cherry.image_view = cherry_view;
+            game_pane_hold.getChildren().addAll(cherry_view);
+            file_manager.add_triplet(game, cherry.x, cherry.y, true);
+        }
         file_manager.add_section_delimeter(game);
         for (int i = 0; i < game.ghost_list.size(); i++) {
             ghost ghost = game.ghost_list.get(i);

@@ -10,7 +10,7 @@ import java.io.IOException;
 public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        stage.setTitle("Bludisko hra");
+        stage.setTitle("Pac man");
         stage.setScene(create_scene(load_main_pane()));
         stage.show();
     }

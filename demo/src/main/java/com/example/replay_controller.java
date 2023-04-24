@@ -90,6 +90,71 @@ public class replay_controller {
                 replay_singleton.set_replay(new replay(replay.file_path)); //loads replay from file, creates replay instance
                 view_controller.load_view("replay_pane.fxml"); //replay controller sets up listens for replay events
             }
+        } else if (kc == KeyCode.RIGHT) {
+            if (replay.mod){
+                replay.forward = true;
+            }else {
+                int i = 0;
+                boolean tmp = replay.forward;
+                replay.forward = true;
+                for (i = replay.steps ;i < replay.steps+10; i++)
+                {
+                    replay.do_replay__step(i);
+                    if (i == replay.step_list.size()-1){
+                        break;
+                    }
+                }
+                replay.forward = tmp;
+                replay.steps = i;
+            }
+
+        } else if (kc == KeyCode.LEFT) {
+            if (replay.mod){
+                replay.forward = false;
+            }else {
+                int i = 0;
+                boolean tmp = replay.forward;
+                replay.forward = false;
+                for (i = replay.steps ;i > replay.steps-10; i--)
+                {
+                    replay.do_replay__step(i);
+                    if (i == 0){
+                        break;
+                    }
+                }
+                replay.forward = tmp;
+                replay.steps = i;
+            }
+
+        } else if (kc == KeyCode.UP) {
+            replay.mod = true;
+            replay.timeline.pause();
+            replay.state = 2;
+        }else if (kc == KeyCode.DOWN) {
+
+            replay.mod = false;
+            replay.timeline.pause();
+            replay.state = 2;
+        } else if (kc == KeyCode.C) {
+            replay.timeline.pause();
+            replay.state = 2;
+            int i = replay.steps;
+            replay.forward = true;
+            while (i < replay.step_list.size()) {
+                replay.do_replay__step(i++);
+            }
+            replay.steps = replay.step_list.size()-1;
+            replay.forward = false;
+        } else if (kc == KeyCode.X) {
+            replay.timeline.pause();
+            replay.state = 2;
+            int i = replay.steps;
+            replay.forward = false;
+            while (i > -1) {
+                replay.do_replay__step(i--);
+            }
+            replay.steps = 0;
+            replay.forward = true;
         }
         System.out.println("Key pressed: ," + event.getCode() + ", ," + event.getText()+",");
     }

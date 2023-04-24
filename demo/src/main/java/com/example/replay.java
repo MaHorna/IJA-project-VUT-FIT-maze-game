@@ -12,6 +12,8 @@ import javafx.util.Duration;
 
 public class replay {
     int state; //0 = not started, 1 = in progress, 2 = paused, 3 = finished
+    boolean forward; //true = forward, false = backward
+    boolean mod; //true = fluent, false = step
     String recorded_game;
     String file_path;
     int height;
@@ -26,12 +28,31 @@ public class replay {
     int cell_size = 40;
     Timeline timeline;
     BufferedReader reader;
+    List<step> step_list = new ArrayList<>();
+    int steps = 0;
 
     public replay(String file_path) throws IOException {
         replay_load_from_file(file_path);
+        load_replay_steps();
+        forward = true;
+        mod = true;
+
         timeline = new Timeline(new KeyFrame(Duration.millis(simulation_speed), ae -> {
+            //timeline.stop();
             try {
-                do_replay_step();
+                if (forward){
+                    do_replay__step(steps++);
+                }else{
+                    do_replay__step(steps--);
+                }
+                //do_replay_step();
+
+                /*String tmp_string = reader.readLine();
+                if (tmp_string == null) {
+                    timeline.stop();
+                    System.out.println("replay finished");
+
+                }*/
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -141,4 +162,75 @@ public class replay {
         }
         System.out.println("replay step");
     }
+
+    void do_replay__step(int step) throws IOException{
+        if (steps+1 > step_list.size()) steps = step_list.size()-1; //above limit check
+        if (steps < 0) steps = 0; //below limit check
+
+        //player move
+        if (step_list.get(step).player != "") {
+            String[] parts = step_list.get(step).player.split(" ");
+            player.image_view.relocate(Double.parseDouble(parts[0]), Double.parseDouble(parts[1]));
+        }
+
+        //key changes
+        if (step_list.get(step).key_changes != "") {
+            String[] parts = step_list.get(step).key_changes.split(" ");
+            if (forward)
+                key_list.get(Integer.parseInt(parts[0])).image_view.setVisible(false);
+            else
+                key_list.get(Integer.parseInt(parts[0])).image_view.setVisible(true);
+        }
+
+        //ghosts move
+        for (int i = 0; i < step_list.get(step).ghosts.size(); i++) {
+            if (step_list.get(step).ghosts.get(i) != "") {
+                String[] parts = step_list.get(step).ghosts.get(i).split(" ");
+                ghost_list.get(i).image_view.relocate(Double.parseDouble(parts[0]), Double.parseDouble(parts[1]));
+            }
+        }
+
+        //finish
+        System.out.println("replay step");
+        if (steps+1 == step_list.size() && forward || steps == 0 && !forward)
+        {
+            timeline.stop();
+            System.out.println("replay finished");
+            state = 2;
+        }
+    }
+
+
+    void load_replay_steps() throws IOException{
+        String tmp_string = reader.readLine();
+        if (tmp_string == null) {
+            return;
+        }
+        System.out.println(tmp_string);
+        while (tmp_string != null){
+            String player_position = "";
+            while (!tmp_string.equals("!")) {
+                player_position = tmp_string;
+                tmp_string = reader.readLine();
+            }
+            //key changes 3752
+            tmp_string = reader.readLine();
+            String key_changes = "";
+            while (!tmp_string.equals("!")) {
+                key_changes = tmp_string;
+                tmp_string = reader.readLine();
+            }
+            //ghosts move
+            tmp_string = reader.readLine();
+            List<String> ghost_position = new ArrayList<>();
+            while (!tmp_string.equals("*"))  {
+                ghost_position.add(tmp_string);
+                tmp_string = reader.readLine();
+            }
+            step_list.add(new step(ghost_position, player_position, key_changes));
+            tmp_string = reader.readLine();
+        }
+        System.out.println("Loaded replay");
+    }
+
 }

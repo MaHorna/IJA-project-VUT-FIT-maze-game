@@ -18,6 +18,9 @@ public class file_manager {
     static void add_update_delimeter(game game) {
         game.recorded_game += "!\n";
     }
+    static void add_step(game game, int step) {
+        game.recorded_game += step + "\n";
+    }
     static void add_triplet(game game, int x, int y, boolean bool) {
         game.recorded_game += x + " " + y + " " + bool + "\n";
     }

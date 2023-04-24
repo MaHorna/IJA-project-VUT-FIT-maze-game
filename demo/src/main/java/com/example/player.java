@@ -8,13 +8,31 @@ public class player {
     public int current_direction; // 0 = up, 1 = right, 2 = down, 3 = left
     public int next_direction; // 0 = up, 1 = right, 2 = down, 3 = left
     public ImageView image_view;
+    public int score;
+    public int step = 0;
+    double prev_x = 0, prev_y = 0;
+    boolean stepped;
 
     public player(double x, double y, int current_direction, int next_direction) {
         this.x = x;
         this.y = y;
         this.current_direction = current_direction;
         this.next_direction = next_direction;
+        score = 0;
     }
+
+    public void player_step(game game){
+        if(((x%1 < 0.02) || (x%1 > 0.98)) && ((y%1 < 0.02) || (y%1 > 0.98))) {
+            if (prev_x != x || prev_y != y){
+                System.out.println("Step: " + step);
+                file_manager.add_step(game, step);
+                step++;
+            }
+            prev_x = x;
+            prev_y = y;
+        }
+    }
+
     public void player_move(game game) {
         boolean is_in_middle_of_tile = false;
         int col_index = (int) Math.round(x);
@@ -80,10 +98,27 @@ public class player {
         int row_index = (int) Math.round(y);
         if (check_if_object_in_tile(row_index, col_index, game, 'K')) {
             for (int i = 0; i < game.key_list.size(); i++) {
-                if (game.key_list.get(i).x == col_index && game.key_list.get(i).y == row_index) {
+                if (game.key_list.get(i).x == col_index && game.key_list.get(i).y == row_index && !game.key_list.get(i).key_is_taken) {
                     game.key_list.get(i).key_is_taken = true;
                     game.key_list.get(i).image_view.setVisible(false);
-                    game.key_list.remove(i);
+                    //game.key_list.remove(i);
+                    file_manager.add_double(game, i, -1); //key removal "command"
+                }
+            }
+        }
+    }
+
+    public void player_check_cherries(game game) {
+        int col_index = (int) Math.round(x);
+        int row_index = (int) Math.round(y);
+        if (check_if_object_in_tile(row_index, col_index, game, '.')) {
+            for (int i = 0; i < game.cherry_list.size(); i++) {
+                if (game.cherry_list.get(i).x == col_index && game.cherry_list.get(i).y == row_index && !game.cherry_list.get(i).key_is_taken) {
+                    game.cherry_list.get(i).key_is_taken = true;
+                    game.cherry_list.get(i).image_view.setVisible(false);
+                    //game.cherry_list.remove(i);
+                    score++;
+                    System.out.println("Score: " + score + " Taken cherry: " + i + " Position: " + game.cherry_list.get(i).x + " " + game.cherry_list.get(i).y + " Total cheries: " + game.cherry_list.size());
                     file_manager.add_double(game, i, -1); //key removal "command"
                 }
             }

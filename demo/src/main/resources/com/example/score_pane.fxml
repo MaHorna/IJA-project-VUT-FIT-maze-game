@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+
+<Label fx:id="score" text="Score: " textAlignment="CENTER" textFill="#e1ff00" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <font>
+      <Font size="24.0" />
+   </font>
+</Label>

@@ -23,6 +23,7 @@ public class replay {
     triple end;      //stores end position
     player player;   //stores player info
     List<triple> key_list = new ArrayList<triple>(); //stores key info
+    List<triple> cherry_list = new ArrayList<triple>(); //stores cherry info
     List<ghost> ghost_list = new ArrayList<ghost>(); //stores ghost info
     double simulation_speed = 10.0; //tick every x miliseconds
     int cell_size = 40;
@@ -30,6 +31,8 @@ public class replay {
     BufferedReader reader;
     List<step> step_list = new ArrayList<>();
     int steps = 0;
+    int score = 0;
+    int step_player = 0;
 
     public replay(String file_path) throws IOException {
         replay_load_from_file(file_path);
@@ -117,6 +120,14 @@ public class replay {
                 tmp_string = reader.readLine();
             }
 
+            //get cherries
+            tmp_string = reader.readLine(); //tmp string for reading
+            while (!tmp_string.equals("*")) {
+                String[] parts4 = tmp_string.split(" ");
+                cherry_list.add(new triple(Integer.parseInt(parts4[0]), Integer.parseInt(parts4[1]), false));
+                tmp_string = reader.readLine();
+            }
+
             //get ghosts
             tmp_string = reader.readLine(); //tmp string for reading
             while (!tmp_string.equals("*"))  {
@@ -167,10 +178,18 @@ public class replay {
         if (steps+1 > step_list.size()) steps = step_list.size()-1; //above limit check
         if (steps < 0) steps = 0; //below limit check
 
+        double tmp = steps;
+        System.out.println("Play time: " + tmp/100);
         //player move
         if (step_list.get(step).player != "") {
             String[] parts = step_list.get(step).player.split(" ");
             player.image_view.relocate(Double.parseDouble(parts[0]), Double.parseDouble(parts[1]));
+        }
+
+        //player steps
+        if (step_list.get(step).player_step != ""){
+            step_player = Integer.parseInt(step_list.get(step).player_step);
+            System.out.println("Step: " + step_player);
         }
 
         //key changes
@@ -180,6 +199,21 @@ public class replay {
                 key_list.get(Integer.parseInt(parts[0])).image_view.setVisible(false);
             else
                 key_list.get(Integer.parseInt(parts[0])).image_view.setVisible(true);
+        }
+
+        //cherry changes
+        if (step_list.get(step).cherry_changes != "") {
+            String[] parts = step_list.get(step).cherry_changes.split(" ");
+            if (forward){
+                cherry_list.get(Integer.parseInt(parts[0])).image_view.setVisible(false);
+                score++;
+                System.out.println("Score: " + score);
+            }
+            else{
+                cherry_list.get(Integer.parseInt(parts[0])).image_view.setVisible(true);
+                score--;
+                System.out.println("Score: " + score);
+            }
         }
 
         //ghosts move
@@ -203,14 +237,22 @@ public class replay {
 
     void load_replay_steps() throws IOException{
         String tmp_string = reader.readLine();
-        if (tmp_string == null) {
+        if (tmp_string == null || tmp_string == "\n") {
             return;
         }
-        System.out.println(tmp_string);
-        while (tmp_string != null){
+        while (tmp_string != null || tmp_string != "\n" || tmp_string != ""){
             String player_position = "";
             while (!tmp_string.equals("!")) {
                 player_position = tmp_string;
+                tmp_string = reader.readLine();
+                if (tmp_string == null || tmp_string == "\n") {
+                    return;
+                }
+            }
+            tmp_string = reader.readLine();
+            String player_step = "";
+            while (!tmp_string.equals("!")) {
+                player_step = tmp_string;
                 tmp_string = reader.readLine();
             }
             //key changes 3752
@@ -220,6 +262,12 @@ public class replay {
                 key_changes = tmp_string;
                 tmp_string = reader.readLine();
             }
+            tmp_string = reader.readLine();
+            String cherry_changes = "";
+            while (!tmp_string.equals("!")) {
+                cherry_changes = tmp_string;
+                tmp_string = reader.readLine();
+            }
             //ghosts move
             tmp_string = reader.readLine();
             List<String> ghost_position = new ArrayList<>();
@@ -227,7 +275,7 @@ public class replay {
                 ghost_position.add(tmp_string);
                 tmp_string = reader.readLine();
             }
-            step_list.add(new step(ghost_position, player_position, key_changes));
+            step_list.add(new step(ghost_position, player_position, key_changes, cherry_changes, player_step));
             tmp_string = reader.readLine();
         }
         System.out.println("Loaded replay");

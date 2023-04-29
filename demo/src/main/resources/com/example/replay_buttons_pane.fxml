@@ -40,7 +40,6 @@
             <Insets right="7.0" />
          </HBox.margin>
       </Button>
-      <Label text="Label" />
       <Button mnemonicParsing="false" onAction="#replay_next" prefHeight="40.0" prefWidth="50.0">
          <graphic>
             <ImageView fitHeight="37.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">

@@ -94,8 +94,6 @@ public class menu_controller {
             game_singleton.set_game(new game(path_to_file)); //loads game from file, creates game instance
 
             view_controller.load_view("game_pane.fxml"); //game controller sets up listens for game events
-
-            //view_controller.load_view("game_info_pane.fxml"); //game controller sets up listens for game events
         } else {
             System.out.println("Open command cancelled by user.");
         }
@@ -103,14 +101,5 @@ public class menu_controller {
     
     @FXML private void exit_button() throws IOException {
         Platform.exit();
-    }
-
-    @FXML private void open_editor_button() throws IOException {
-        view_controller.load_view("editor_pane.fxml");
-        //editor controller, has variables....
-    }
-    
-    @FXML private void save_custom_map_button() throws IOException {
-        //editor controller, saves variables to file in text format
     }
 }

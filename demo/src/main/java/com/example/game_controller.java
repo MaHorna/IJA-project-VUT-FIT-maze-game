@@ -154,7 +154,4 @@ public class game_controller {
         }
         System.out.println("Key pressed: ," + event.getCode() + ", ," + event.getText()+",");
     }
-
-    public void popup_restart(ActionEvent actionEvent) {
-    }
 }

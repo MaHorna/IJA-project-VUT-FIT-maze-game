@@ -5,7 +5,7 @@
 
 <VBox fx:id="home_pane_vbox" alignment="CENTER" prefHeight="803.0" prefWidth="979.0" style="-fx-background-color: BLACK;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.home_controller">
    <children>
-      <ImageView fitHeight="633.0" fitWidth="1035.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+      <ImageView fitHeight="667.0" fitWidth="1260.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
          <image>
             <Image url="@images/pac_man_screen.jpg" />
          </image>

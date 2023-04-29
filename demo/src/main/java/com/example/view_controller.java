@@ -1,3 +1,10 @@
+/**
+ * @author Matej Horňanský
+ * @author Dávid Kán
+ *
+ * Class for loading view
+ */
+
 package com.example;
 
 import javafx.fxml.FXMLLoader;

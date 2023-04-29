@@ -1,3 +1,9 @@
+/**
+ * @author Matej Horňanský
+ * @author Dávid Kán
+ *
+ * Class for ghost object
+ */
 package com.example;
 
 import javafx.scene.image.ImageView;

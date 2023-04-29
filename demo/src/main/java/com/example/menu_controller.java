@@ -1,3 +1,9 @@
+/**
+ * @author Matej Horňanský
+ * @author Dávid Kán
+ *
+ * Controller class, functions for buttons form side menu panel
+ */
 package com.example;
 
 import java.io.File;

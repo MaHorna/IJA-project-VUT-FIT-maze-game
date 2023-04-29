@@ -1,3 +1,9 @@
+/**
+ * @author Matej Horňanský
+ * @author Dávid Kán
+ *
+ * Controller for main class
+ */
 package com.example;
 
 import javafx.fxml.FXML;

@@ -1,3 +1,9 @@
+/**
+ * @author Matej Horňanský
+ * @author Dávid Kán
+ *
+ * Utility class for saving step vaiables
+ */
 package com.example;
 
 import java.util.List;

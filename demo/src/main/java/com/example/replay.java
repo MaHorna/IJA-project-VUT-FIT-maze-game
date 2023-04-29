@@ -1,3 +1,10 @@
+/**
+ * @author Matej Horňanský
+ * @author Dávid Kán
+ *
+ * Class for loading saved replays and playing them
+ */
+
 package com.example;
 
 import java.io.BufferedReader;

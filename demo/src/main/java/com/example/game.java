@@ -1,3 +1,10 @@
+/**
+ * @author Matej Horňanský
+ * @author Dávid Kán
+ *
+ * Class for loading map and simulating steps
+ */
+
 package com.example;
 
 import java.util.*;
@@ -132,7 +139,6 @@ public class game {
         player.player_check_ghosts(this);
         file_manager.add_section_delimeter(this); //end update section
         play_time++;
-        System.out.println("Play time: " + play_time/100);
         player.set_time(play_time/100);
     }
 }

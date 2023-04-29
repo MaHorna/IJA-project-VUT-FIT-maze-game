@@ -1,5 +1,10 @@
+/**
+ * @author Matej Horňanský
+ * @author Dávid Kán
+ *
+ * Controlller class for drawng objects and listening for input
+ */
 package com.example;
-
 
 import java.io.IOException;
 
@@ -15,6 +20,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class game_controller {
     int cell_size = 0;
@@ -92,16 +98,20 @@ public class game_controller {
         file_manager.add_section_delimeter(game);
         Label score_label = new Label("Score: 0");
         score_label.setTextFill(Color.YELLOW);
+        score_label.setLayoutX(50);
+        score_label.setFont(Font.font("System", 16));
         game_pane_hold.getChildren().add(score_label);
         game.player.score_label = score_label;
-        Label time_label = new Label("Time: 0");
+        Label time_label = new Label("Time: 0.0");
         time_label.setTextFill(Color.YELLOW);
-        time_label.setLayoutX(100);
+        time_label.setLayoutX(200);
+        time_label.setFont(Font.font("System", 16));
         game_pane_hold.getChildren().add(time_label);
         game.player.time_label = time_label;
         Label step_label = new Label("Steps: 0");
         step_label.setTextFill(Color.YELLOW);
-        step_label.setLayoutX(200);
+        step_label.setLayoutX(350);
+        step_label.setFont(Font.font("System", 16));
         game_pane_hold.getChildren().add(step_label);
         game.player.step_label = step_label;
     }

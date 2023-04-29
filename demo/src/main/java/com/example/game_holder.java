@@ -1,3 +1,9 @@
+/**
+ * @author Matej Horňanský
+ * @author Dávid Kán
+ *
+ * Utility class for game
+ */
 package com.example;
 
 public final class game_holder {

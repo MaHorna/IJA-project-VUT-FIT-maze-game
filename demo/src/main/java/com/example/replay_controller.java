@@ -1,3 +1,10 @@
+/**
+ * @author Matej Horňanský
+ * @author Dávid Kán
+ *
+ * Controller class used for drawing objects, functions for buttons and listenning for input
+ */
+
 package com.example;
 
 import java.io.IOException;

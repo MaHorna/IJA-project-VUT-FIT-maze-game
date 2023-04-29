@@ -92,7 +92,10 @@ public class menu_controller {
                 game.timeline.stop();
             }
             game_singleton.set_game(new game(path_to_file)); //loads game from file, creates game instance
+
             view_controller.load_view("game_pane.fxml"); //game controller sets up listens for game events
+
+            //view_controller.load_view("game_info_pane.fxml"); //game controller sets up listens for game events
         } else {
             System.out.println("Open command cancelled by user.");
         }

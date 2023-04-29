@@ -1,10 +1,13 @@
 package com.example;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.HBox;
+
 import java.io.IOException;
 
 public class view_controller {
     private static main_controller main_controller;
+    public HBox hbox_main;
     public static void set_main_controller(main_controller arg_main_cont) {
         view_controller.main_controller = arg_main_cont;
     }
@@ -20,5 +23,9 @@ public class view_controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static HBox getHbox_main(){
+        return main_controller.hbox_main;
     }
 }

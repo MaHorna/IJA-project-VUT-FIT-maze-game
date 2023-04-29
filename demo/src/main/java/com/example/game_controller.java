@@ -3,14 +3,18 @@ package com.example;
 
 import java.io.IOException;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 public class game_controller {
     int cell_size = 0;
@@ -27,6 +31,8 @@ public class game_controller {
         canvas_manager.draw_board(gc, game.board, game.width, game.height);
         file_manager.add_map(game);
         draw_objects(game);
+        game.player.game_pane_hold = game_pane_hold;
+        game.player.Hbox_main = view_controller.getHbox_main();
     }
 
     void draw_objects(game game) {
@@ -84,6 +90,20 @@ public class game_controller {
             file_manager.add_double(game, ghost.x, ghost.y);
         }
         file_manager.add_section_delimeter(game);
+        Label score_label = new Label("Score: 0");
+        score_label.setTextFill(Color.YELLOW);
+        game_pane_hold.getChildren().add(score_label);
+        game.player.score_label = score_label;
+        Label time_label = new Label("Time: 0");
+        time_label.setTextFill(Color.YELLOW);
+        time_label.setLayoutX(100);
+        game_pane_hold.getChildren().add(time_label);
+        game.player.time_label = time_label;
+        Label step_label = new Label("Steps: 0");
+        step_label.setTextFill(Color.YELLOW);
+        step_label.setLayoutX(200);
+        game_pane_hold.getChildren().add(step_label);
+        game.player.step_label = step_label;
     }
     
     @FXML private void key_pressed_event(KeyEvent event) throws IOException{
@@ -133,5 +153,8 @@ public class game_controller {
             }
         }
         System.out.println("Key pressed: ," + event.getCode() + ", ," + event.getText()+",");
+    }
+
+    public void popup_restart(ActionEvent actionEvent) {
     }
 }

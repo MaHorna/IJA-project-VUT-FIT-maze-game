@@ -1,3 +1,9 @@
+/**
+ * @author Matej Horňanský
+ * @author Dávid Kán
+ *
+ * Class used for drawing board
+ */
 package com.example;
 
 import javafx.scene.paint.Color;

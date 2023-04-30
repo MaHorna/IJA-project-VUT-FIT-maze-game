@@ -1,3 +1,10 @@
+/**
+ * @author Matej Horňanský
+ * @author Dávid Kán
+ *
+ * Utility class
+ */
+
 package com.example;
 
 import javafx.scene.image.ImageView;

@@ -1,3 +1,9 @@
+/**
+ * @author Matej Horňanský
+ * @author Dávid Kán
+ *
+ * Main class
+ */
 package com.example;
 
 import javafx.application.Application;

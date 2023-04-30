@@ -1,12 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.canvas.Canvas?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.HBox?>
 
-<Pane fx:id="replay_pane_hold" onKeyPressed="#key_pressed_event" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.replay_controller">
+<?import javafx.geometry.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="replay_pane_hold" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#key_pressed_event" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.replay_controller">
     <children>
-        <Canvas fx:id="replay_canvas" width="5000" height="5000"/>
+        <Canvas fx:id="replay_canvas" height="5000" width="5000" />
+      <HBox fx:id="replay_buttons" alignment="TOP_RIGHT" layoutX="2500.0" layoutY="4950.0">
+         <children>
+             <Button maxHeight="40.0" maxWidth="50.0" mnemonicParsing="false" onAction="#replay_start" prefHeight="40.0" prefWidth="50.0">
+                 <HBox.margin>
+                     <Insets right="7.0" />
+                 </HBox.margin>
+                 <graphic>
+                     <ImageView fitHeight="40.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                         <image>
+                             <Image url="@images/next_end.png" />
+                         </image>
+                     </ImageView>
+                 </graphic></Button>
+             <Button mnemonicParsing="false" onAction="#replay_back" prefHeight="40.0" prefWidth="50.0">
+                 <graphic>
+                     <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                         <image>
+                             <Image url="@images/next.png" />
+                         </image></ImageView>
+                 </graphic>
+                 <HBox.margin>
+                     <Insets right="7.0" />
+                 </HBox.margin>
+             </Button>
+             <Button mnemonicParsing="false" onAction="#replay_pause" prefHeight="40.0" prefWidth="50.0">
+                 <graphic>
+                     <ImageView fx:id="play_stop_image" fitHeight="39.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                         <image>
+                             <Image url="@images/play.png" />
+                         </image></ImageView>
+                 </graphic>
+                 <HBox.margin>
+                     <Insets right="7.0" />
+                 </HBox.margin>
+             </Button>
+             <Button mnemonicParsing="false" onAction="#replay_next" prefHeight="40.0" prefWidth="50.0">
+                 <graphic>
+                     <ImageView fitHeight="37.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                         <image>
+                             <Image url="@images/next.png" />
+                         </image></ImageView>
+                 </graphic>
+                 <HBox.margin>
+                     <Insets right="7.0" />
+                 </HBox.margin>
+             </Button>
+             <Button mnemonicParsing="false" onAction="#replay_end" prefHeight="40.0" prefWidth="50.0">
+                 <HBox.margin>
+                     <Insets right="7.0" />
+                 </HBox.margin>
+                 <graphic>
+                     <ImageView fitHeight="40.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                         <image>
+                             <Image url="@images/next_end.png" />
+                         </image>
+                     </ImageView>
+                 </graphic></Button>
+             <ToggleButton fx:id="replay_step" mnemonicParsing="false" onAction="#replay_step_toggle" prefHeight="40.0" prefWidth="50.0" text="Steps">
+                 <HBox.margin>
+                     <Insets right="7.0" />
+                 </HBox.margin>
+                 <toggleGroup>
+                     <ToggleGroup fx:id="replay_butt" />
+                 </toggleGroup></ToggleButton>
+             <ToggleButton fx:id="replay_flow" mnemonicParsing="false" onAction="#replay_step_toggle" prefHeight="40.0" prefWidth="50.0" selected="true" text="Flow" toggleGroup="$replay_butt" />
+         </children></HBox>
     </children>
 </Pane>

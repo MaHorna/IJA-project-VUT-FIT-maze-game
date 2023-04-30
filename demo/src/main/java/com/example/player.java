@@ -1,6 +1,18 @@
+/**
+ * @author Matej Horňanský
+ * @author Dávid Kán
+ *
+ * Class for player object
+ */
+
 package com.example;
 
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class player {
     public double x; //start of board is (0,0) , middle of first cell is (0.5, 0.5), first cell ends at (1,1) , this way we can have linear motion on board
@@ -8,10 +20,13 @@ public class player {
     public int current_direction; // 0 = up, 1 = right, 2 = down, 3 = left
     public int next_direction; // 0 = up, 1 = right, 2 = down, 3 = left
     public ImageView image_view;
+    public Label score_label, time_label, step_label;
     public int score;
     public int step = 0;
     double prev_x = 0, prev_y = 0;
-    boolean stepped;
+    double played_time;
+    public Pane game_pane_hold;
+    public HBox Hbox_main;
 
     public player(double x, double y, int current_direction, int next_direction) {
         this.x = x;
@@ -24,13 +39,18 @@ public class player {
     public void player_step(game game){
         if(((x%1 < 0.02) || (x%1 > 0.98)) && ((y%1 < 0.02) || (y%1 > 0.98))) {
             if (prev_x != x || prev_y != y){
-                System.out.println("Step: " + step);
                 file_manager.add_step(game, step);
+                step_label.setText("Step: " + step);
                 step++;
             }
             prev_x = x;
             prev_y = y;
         }
+    }
+
+    public void set_time(double time){
+        played_time = time;
+        time_label.setText("Time: " + time);
     }
 
     public void player_move(game game) {
@@ -101,7 +121,6 @@ public class player {
                 if (game.key_list.get(i).x == col_index && game.key_list.get(i).y == row_index && !game.key_list.get(i).key_is_taken) {
                     game.key_list.get(i).key_is_taken = true;
                     game.key_list.get(i).image_view.setVisible(false);
-                    //game.key_list.remove(i);
                     file_manager.add_double(game, i, -1); //key removal "command"
                 }
             }
@@ -116,10 +135,9 @@ public class player {
                 if (game.cherry_list.get(i).x == col_index && game.cherry_list.get(i).y == row_index && !game.cherry_list.get(i).key_is_taken) {
                     game.cherry_list.get(i).key_is_taken = true;
                     game.cherry_list.get(i).image_view.setVisible(false);
-                    //game.cherry_list.remove(i);
                     score++;
-                    System.out.println("Score: " + score + " Taken cherry: " + i + " Position: " + game.cherry_list.get(i).x + " " + game.cherry_list.get(i).y + " Total cheries: " + game.cherry_list.size());
-                    file_manager.add_double(game, i, -1); //key removal "command"
+                    score_label.setText("Score: " + score);
+                    file_manager.add_double(game, i, score); //key removal "command"
                 }
             }
         }
@@ -138,6 +156,7 @@ public class player {
                 System.out.println("player won");
                 game.state = 3;
                 game.timeline.stop();
+                draw_end_window("You won");
             }
             else {
                 System.out.println("player not yet collected all keys");
@@ -153,7 +172,25 @@ public class player {
                 game.timeline.stop();
                 game.state = 3;
                 System.out.println("player hit a ghost");
+                draw_end_window("You died");
             }
         }
+    }
+
+    private void draw_end_window(String text)
+    {
+        Label label = new Label(text);
+        VBox vBox = new VBox();
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setMinWidth(150);
+        vBox.setMinHeight(50);
+        vBox.setLayoutX(Hbox_main.getWidth()/2 - 150);
+        vBox.setLayoutY(Hbox_main.getHeight()/2 - 50);
+        label.setFont(Font.font("System", 24));
+        label.setTextFill(Color.YELLOW);
+        vBox.setStyle("-fx-background-color: black");
+        vBox.setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, new CornerRadii(5), BorderWidths.DEFAULT)));
+        vBox.getChildren().add(label);
+        game_pane_hold.getChildren().add(vBox);
     }
 }

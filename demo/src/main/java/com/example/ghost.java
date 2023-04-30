@@ -1,3 +1,9 @@
+/**
+ * @author Matej Horňanský
+ * @author Dávid Kán
+ *
+ * Class for ghost object
+ */
 package com.example;
 
 import javafx.scene.image.ImageView;
@@ -8,13 +14,11 @@ public class ghost {
     public double y;
     public int direction; // 0 = up, 1 = right, 2 = down, 3 = left
     public ImageView image_view;
-    //public int ai_type;
 
     public ghost(double x, double y, int direction) {
         this.x = x;
         this.y = y;
         this.direction = direction;
-        //this.ai_type = ai_type;
     }
     public void ghost_move(game game) {
         boolean is_in_middle_of_tile = false;

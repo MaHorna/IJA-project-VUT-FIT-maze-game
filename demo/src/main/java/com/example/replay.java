@@ -1,3 +1,10 @@
+/**
+ * @author Matej Horňanský
+ * @author Dávid Kán
+ *
+ * Class for loading saved replays and playing them
+ */
+
 package com.example;
 
 import java.io.BufferedReader;
@@ -14,12 +21,10 @@ public class replay {
     int state; //0 = not started, 1 = in progress, 2 = paused, 3 = finished
     boolean forward; //true = forward, false = backward
     boolean mod; //true = fluent, false = step
-    String recorded_game;
     String file_path;
     int height;
     int width;
     static char[][] board;
-    triple start;    //stores start position
     triple end;      //stores end position
     player player;   //stores player info
     List<triple> key_list = new ArrayList<triple>(); //stores key info
@@ -41,21 +46,12 @@ public class replay {
         mod = true;
 
         timeline = new Timeline(new KeyFrame(Duration.millis(simulation_speed), ae -> {
-            //timeline.stop();
             try {
                 if (forward){
                     do_replay__step(steps++);
                 }else{
                     do_replay__step(steps--);
                 }
-                //do_replay_step();
-
-                /*String tmp_string = reader.readLine();
-                if (tmp_string == null) {
-                    timeline.stop();
-                    System.out.println("replay finished");
-
-                }*/
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -140,46 +136,22 @@ public class replay {
             System.out.println("File is empty");
         }
     }
-    
-
-    void do_replay_step() throws IOException{
-        //player move
-        String tmp_string = reader.readLine();
-        if (tmp_string == null) {
-            timeline.stop();
-            System.out.println("replay finished");
-            return;
-        }
-        while (!tmp_string.equals("!")) {
-            String[] parts = tmp_string.split(" ");
-            player.image_view.relocate(Double.parseDouble(parts[0]), Double.parseDouble(parts[1]));
-            tmp_string = reader.readLine();
-        }
-        //key changes
-        tmp_string = reader.readLine();
-        while (!tmp_string.equals("!")) {
-            String[] parts = tmp_string.split(" ");
-            key_list.get(Integer.parseInt(parts[0])).image_view.setVisible(false);
-            tmp_string = reader.readLine();
-        }
-        //ghosts move
-        tmp_string = reader.readLine();
-        int ghost_index = 0;
-        while (!tmp_string.equals("*"))  {
-            String[] parts = tmp_string.split(" ");
-            ghost_list.get(ghost_index).image_view.relocate(Double.parseDouble(parts[0]), Double.parseDouble(parts[1]));
-            tmp_string = reader.readLine();
-            ghost_index++;
-        }
-        System.out.println("replay step");
-    }
 
     void do_replay__step(int step) throws IOException{
-        if (steps+1 > step_list.size()) steps = step_list.size()-1; //above limit check
-        if (steps < 0) steps = 0; //below limit check
+        if (step+1 > step_list.size()) {
+            steps = step_list.size()-1; //above limit check
+            step = step_list.size()-1;
+        }
+        if (step < 0) {
+            steps = 0; //below limit check
+            step = 0;
+        }
+        if (step == 0) {
+            player.score_label.setText("Score: " + 0);
+        }
 
-        double tmp = steps;
-        System.out.println("Play time: " + tmp/100);
+        double tmp = step;
+        player.set_time(tmp/100);
         //player move
         if (step_list.get(step).player != "") {
             String[] parts = step_list.get(step).player.split(" ");
@@ -189,7 +161,7 @@ public class replay {
         //player steps
         if (step_list.get(step).player_step != ""){
             step_player = Integer.parseInt(step_list.get(step).player_step);
-            System.out.println("Step: " + step_player);
+            player.step_label.setText("Steps: " + step_player);
         }
 
         //key changes
@@ -206,14 +178,12 @@ public class replay {
             String[] parts = step_list.get(step).cherry_changes.split(" ");
             if (forward){
                 cherry_list.get(Integer.parseInt(parts[0])).image_view.setVisible(false);
-                score++;
-                System.out.println("Score: " + score);
             }
             else{
                 cherry_list.get(Integer.parseInt(parts[0])).image_view.setVisible(true);
-                score--;
-                System.out.println("Score: " + score);
             }
+            score = Integer.parseInt(parts[1]);
+            player.score_label.setText("Score: " + score);
         }
 
         //ghosts move
@@ -225,15 +195,13 @@ public class replay {
         }
 
         //finish
-        System.out.println("replay step");
-        if (steps+1 == step_list.size() && forward || steps == 0 && !forward)
+        if (step+1 == step_list.size() && forward || step == 0 && !forward)
         {
             timeline.stop();
             System.out.println("replay finished");
             state = 2;
         }
     }
-
 
     void load_replay_steps() throws IOException{
         String tmp_string = reader.readLine();

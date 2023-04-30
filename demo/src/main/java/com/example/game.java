@@ -1,9 +1,19 @@
+/**
+ * @author Matej Horňanský
+ * @author Dávid Kán
+ *
+ * Class for loading map and simulating steps
+ */
+
 package com.example;
 
 import java.util.*;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.io.BufferedReader;
@@ -13,7 +23,6 @@ import java.io.FileReader;
 public class game {
     int state; //0 = not started, 1 = in progress, 2 = paused, 3 = finished
     String file_path;
-    String file_data;
     String recorded_game;
     int height;
     int width;
@@ -130,6 +139,6 @@ public class game {
         player.player_check_ghosts(this);
         file_manager.add_section_delimeter(this); //end update section
         play_time++;
-        System.out.println("Play time: " + play_time/100);
+        player.set_time(play_time/100);
     }
 }

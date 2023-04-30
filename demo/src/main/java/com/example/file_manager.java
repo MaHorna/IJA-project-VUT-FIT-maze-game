@@ -1,3 +1,9 @@
+/**
+ * @author Matej Horňanský
+ * @author Dávid Kán
+ *
+ * Class for saving text into txt file
+ */
 package com.example;
 
 public class file_manager {

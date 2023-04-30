@@ -1,3 +1,9 @@
+/**
+ * @author Matej Horňanský
+ * @author Dávid Kán
+ *
+ * Utility class for replay
+ */
 package com.example;
 
 public class replay_holder {

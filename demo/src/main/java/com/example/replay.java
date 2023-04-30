@@ -138,8 +138,14 @@ public class replay {
     }
 
     void do_replay__step(int step) throws IOException{
-        if (step+1 > step_list.size()) steps = step_list.size()-1; //above limit check
-        if (step < 0) steps = 0; //below limit check
+        if (step+1 > step_list.size()) {
+            steps = step_list.size()-1; //above limit check
+            step = step_list.size()-1;
+        }
+        if (step < 0) {
+            steps = 0; //below limit check
+            step = 0;
+        }
         if (step == 0) {
             player.score_label.setText("Score: " + 0);
         }

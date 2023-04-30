@@ -10,9 +10,7 @@ package com.example;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -190,7 +188,8 @@ public class player {
         vBox.setLayoutY(Hbox_main.getHeight()/2 - 50);
         label.setFont(Font.font("System", 24));
         label.setTextFill(Color.YELLOW);
-        vBox.setStyle("-fx-background-color: gray");
+        vBox.setStyle("-fx-background-color: black");
+        vBox.setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, new CornerRadii(5), BorderWidths.DEFAULT)));
         vBox.getChildren().add(label);
         game_pane_hold.getChildren().add(vBox);
     }

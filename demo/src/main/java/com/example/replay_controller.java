@@ -22,6 +22,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class replay_controller {
     @FXML public ToggleButton replay_step;
@@ -89,18 +90,23 @@ public class replay_controller {
             ghost.image_view = ghost_view;
             replay_pane_hold.getChildren().addAll(ghost_view);
         }
+
         Label score_label = new Label("Score: 0");
+        score_label.setLayoutX(50);
+        score_label.setFont(Font.font("System", 16));
         score_label.setTextFill(Color.YELLOW);
         replay_pane_hold.getChildren().add(score_label);
         replay.player.score_label = score_label;
         Label time_label = new Label("Time: 0.0");
         time_label.setTextFill(Color.YELLOW);
-        time_label.setLayoutX(100);
+        time_label.setLayoutX(200);
+        time_label.setFont(Font.font("System", 16));
         replay_pane_hold.getChildren().add(time_label);
         replay.player.time_label = time_label;
         Label step_label = new Label("Steps: 0");
         step_label.setTextFill(Color.YELLOW);
-        step_label.setLayoutX(200);
+        step_label.setLayoutX(350);
+        step_label.setFont(Font.font("System", 16));
         replay_pane_hold.getChildren().add(step_label);
         replay.player.step_label = step_label;
     }

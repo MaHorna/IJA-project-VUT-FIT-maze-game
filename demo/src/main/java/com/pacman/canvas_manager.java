@@ -1,16 +1,25 @@
 /**
  * @author Matej Horňanský
- * @author Dávid Kán
- *
  * Class used for drawing board
  */
-package com.example;
+package com.pacman;
 
 import javafx.scene.paint.Color;
 import javafx.scene.canvas.GraphicsContext;
 
+/**
+ * Class used for drawing board
+ */
 public class canvas_manager {
     static int cell_size = 40;
+
+    /**
+     * Draws board on scren
+     * @param gc graphics context
+     * @param board array with loaded game bord
+     * @param width maps width
+     * @param height maps height
+     */
     public static void draw_board(GraphicsContext gc, char[][] board, int width, int height) {
         
         if (board == null) {

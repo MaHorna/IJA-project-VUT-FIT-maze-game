@@ -1,10 +1,9 @@
 /**
  * @author Matej Horňanský
- * @author Dávid Kán
  *
  * Class
  */
-package com.example;
+package com.pacman;
 
 public class home_controller {
 

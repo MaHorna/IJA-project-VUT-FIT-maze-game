@@ -6,7 +6,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane fx:id="replay_pane_hold" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#key_pressed_event" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.replay_controller">
+<Pane fx:id="replay_pane_hold" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#key_pressed_event" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pacman.replay_controller">
     <children>
         <Canvas fx:id="replay_canvas" height="5000" width="5000" />
       <HBox fx:id="replay_buttons" alignment="TOP_RIGHT" layoutX="2500.0" layoutY="4950.0">

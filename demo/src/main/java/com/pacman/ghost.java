@@ -1,14 +1,16 @@
 /**
  * @author Matej Horňanský
- * @author Dávid Kán
  *
  * Class for ghost object
  */
-package com.example;
+package com.pacman;
 
 import javafx.scene.image.ImageView;
 import java.util.Random;
 
+/**
+ * Class for storing ghost object information and its manipulation.
+ */
 public class ghost {
     public double x; //start of board is (0,0) , middle of first cell is (0.5, 0.5), first cell ends at (1,1) , this way we can have linear motion on board
     public double y;
@@ -20,6 +22,11 @@ public class ghost {
         this.y = y;
         this.direction = direction;
     }
+
+    /**
+     * Moves ghosts
+     * @param game current game
+     */
     public void ghost_move(game game) {
         boolean is_in_middle_of_tile = false;
         int col_index = (int) Math.round(x);

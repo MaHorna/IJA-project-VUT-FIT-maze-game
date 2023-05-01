@@ -2,13 +2,12 @@
  * @author Matej Horňanský
  * @author Dávid Kán
  *
- * Controlller class for drawng objects and listening for input
+ * Controller class for drawing objects and listening for input
  */
-package com.example;
+package com.pacman;
 
 import java.io.IOException;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -17,11 +16,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+/**
+ * Controller class for drawing objects and listening for input
+ */
 public class game_controller {
     int cell_size = 0;
     @FXML private Canvas game_canvas;

@@ -5,7 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox fx:id="replay_buttons" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.replay_controller">
+<HBox fx:id="replay_buttons" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pacman.replay_controller">
    <children>
       <Button maxHeight="40.0" maxWidth="50.0" mnemonicParsing="false" onAction="#replay_start" prefHeight="40.0" prefWidth="50.0">
          <HBox.margin>
@@ -20,7 +20,7 @@
          </graphic></Button>
       <Button mnemonicParsing="false" onAction="#replay_back" prefHeight="40.0" prefWidth="50.0">
          <graphic>
-            <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+            <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" style="-fx-background-color: YELLOW;">
                <image>
                   <Image url="@images/next.png" />
                </image></ImageView>
@@ -31,7 +31,7 @@
       </Button>
       <Button mnemonicParsing="false" onAction="#replay_pause" prefHeight="40.0" prefWidth="50.0">
          <graphic>
-            <ImageView fx:id="play_stop_image" fitHeight="39.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="play_stop_image" fitHeight="39.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: YELLOW;">
                <image>
                   <Image url="@images/play.png" />
                </image></ImageView>
@@ -42,7 +42,7 @@
       </Button>
       <Button mnemonicParsing="false" onAction="#replay_next" prefHeight="40.0" prefWidth="50.0">
          <graphic>
-            <ImageView fitHeight="37.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="37.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: YELLOW;">
                <image>
                   <Image url="@images/next.png" />
                </image></ImageView>
@@ -56,7 +56,7 @@
             <Insets right="7.0" />
          </HBox.margin>
          <graphic>
-            <ImageView fitHeight="40.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="40.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: YELLOW;">
                <image>
                   <Image url="@images/next_end.png" />
                </image>

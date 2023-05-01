@@ -1,10 +1,9 @@
 /**
  * @author Matej Horňanský
- * @author Dávid Kán
  *
  * Main class
  */
-package com.example;
+package com.pacman;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +12,9 @@ import javafx.stage.Stage;
 import javafx.scene.layout.Pane;
 import java.io.IOException;
 
+/**
+ * Runnable class
+ */
 public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
@@ -22,7 +24,7 @@ public class App extends Application {
     }
 
     private Pane load_main_pane() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/main.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pacman/main.fxml"));
         Pane main_pane = (Pane) loader.load();
         view_controller.set_main_controller(loader.getController());
         view_controller.load_view("home_pane.fxml");

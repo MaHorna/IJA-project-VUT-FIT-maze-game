@@ -5,7 +5,7 @@
  * Controller class used for drawing objects, functions for buttons and listenning for input
  */
 
-package com.example;
+package com.pacman;
 
 import java.io.IOException;
 
@@ -24,6 +24,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+/**
+ * Controller class used for drawing objects, functions for buttons and listenning for input
+ */
 public class replay_controller {
     @FXML public ToggleButton replay_step;
     @FXML public ToggleButton replay_flow;
@@ -39,8 +42,8 @@ public class replay_controller {
         replay_holder replay_singleton = replay_holder.get_instance();
         replay = replay_singleton.get_replay();
         cell_size = replay.cell_size;
-        canvas_manager.draw_board(gc, com.example.replay.board, replay.width-4, replay.height-4);
-        replay_buttons.setLayoutX(replay.width*cell_size/2);
+        canvas_manager.draw_board(gc, com.pacman.replay.board, replay.width-4, replay.height-4);
+        replay_buttons.setLayoutX((replay.width*cell_size/2) - 207);
         replay_buttons.setLayoutY(replay.height*cell_size + 10);
         draw_objects(replay);
     }
@@ -201,6 +204,11 @@ public class replay_controller {
         System.out.println("Key pressed: ," + event.getCode() + ", ," + event.getText()+",");
     }
 
+    /**
+     * Button for jumping to the start of replay
+     * @param actionEvent
+     * @throws IOException
+     */
     @FXML public void replay_start(ActionEvent actionEvent) throws IOException {
         replay.timeline.pause();
         replay.state = 2;
@@ -213,6 +221,11 @@ public class replay_controller {
         replay.forward = true;
     }
 
+    /**
+     * Button for moving backwards
+     * @param actionEvent
+     * @throws IOException
+     */
     @FXML public void replay_back(ActionEvent actionEvent) throws IOException {
         if (replay.mod){
             replay.forward = false;
@@ -232,6 +245,11 @@ public class replay_controller {
         }
     }
 
+    /**
+     * Button for pausing/playing replay
+     * @param actionEvent
+     * @throws IOException
+     */
     @FXML public void replay_pause(ActionEvent actionEvent) throws IOException {
         if (replay.state == 0) { //not started yet
             replay.state = 1; //start game
@@ -256,6 +274,11 @@ public class replay_controller {
         }
     }
 
+    /**
+     * Button for playing replay forward
+     * @param actionEvent
+     * @throws IOException
+     */
     @FXML public void replay_next(ActionEvent actionEvent) throws IOException {
         if (replay.mod){
             replay.forward = true;
@@ -275,6 +298,11 @@ public class replay_controller {
         }
     }
 
+    /**
+     * Button for jumping to the end of replay
+     * @param actionEvent
+     * @throws IOException
+     */
     @FXML public void replay_end(ActionEvent actionEvent) throws IOException {
         replay.timeline.pause();
         replay.state = 2;
@@ -287,6 +315,10 @@ public class replay_controller {
         replay.forward = false;
     }
 
+    /**
+     * Toggle buttons for changing replay mod
+     * @param actionEvent
+     */
     @FXML public void replay_step_toggle(ActionEvent actionEvent) {
         if (actionEvent.getSource() == replay_step){
             replay.mod = false;

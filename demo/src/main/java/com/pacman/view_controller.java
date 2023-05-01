@@ -2,19 +2,21 @@
  * @author Matej Horňanský
  * @author Dávid Kán
  *
- * Class for loading view
+ * Controller class for loading view
  */
 
-package com.example;
+package com.pacman;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 
+/**
+ * Class for loading view
+ */
 public class view_controller {
     private static main_controller main_controller;
-    public HBox hbox_main;
     public static void set_main_controller(main_controller arg_main_cont) {
         view_controller.main_controller = arg_main_cont;
     }

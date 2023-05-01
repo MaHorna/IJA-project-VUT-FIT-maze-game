@@ -1,11 +1,12 @@
 /**
  * @author Matej Horňanský
- * @author Dávid Kán
- *
  * Class for saving text into txt file
  */
-package com.example;
+package com.pacman;
 
+/**
+ * Class for saving text into txt file
+ */
 public class file_manager {
     //saving
     static void add_map(game game) {
@@ -36,11 +37,5 @@ public class file_manager {
     static void add_double(game game, double x, double y) {
         game.recorded_game += x + " " + y + "\n";
     }
-    //saving 
-
-
-
-    //loading
-
-    //loading
+    //saving
 }

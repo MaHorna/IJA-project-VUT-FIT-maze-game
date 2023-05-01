@@ -1,16 +1,18 @@
 /**
  * @author Matej Horňanský
- * @author Dávid Kán
  *
  * Controller for main class
  */
-package com.example;
+package com.pacman;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
+/**
+ * Controller for main class
+ */
 public class main_controller {
     public HBox hbox_main;
     @FXML private Pane view_holder;

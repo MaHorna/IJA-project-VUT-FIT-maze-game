@@ -1,7 +1,7 @@
-module com.example {
+module com.pacman {
     requires transitive javafx.controls;
     requires javafx.fxml;
 
-    opens com.example to javafx.fxml;
-    exports com.example;
+    opens com.pacman to javafx.fxml;
+    exports com.pacman;
 }

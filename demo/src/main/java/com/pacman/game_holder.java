@@ -1,11 +1,14 @@
 /**
  * @author Matej Horňanský
- * @author Dávid Kán
  *
  * Utility class for game
  */
-package com.example;
 
+package com.pacman;
+
+/**
+ * Utility class for game
+ */
 public final class game_holder {
     public game game;
 
@@ -16,7 +19,6 @@ public final class game_holder {
     public static game_holder get_instance() {
         return INSTANCE;
     }
-    
     public void set_game(game g) {
         this.game = g;
     }

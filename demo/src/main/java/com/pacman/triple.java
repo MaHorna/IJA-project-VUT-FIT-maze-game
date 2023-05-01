@@ -1,14 +1,16 @@
 /**
  * @author Matej Horňanský
- * @author Dávid Kán
  *
  * Utility class
  */
 
-package com.example;
+package com.pacman;
 
 import javafx.scene.image.ImageView;
 
+/**
+ * Utility class
+ */
 public class triple {
     public int x;
     public int y;

@@ -5,7 +5,7 @@
  * Class for loading saved replays and playing them
  */
 
-package com.example;
+package com.pacman;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -17,6 +17,9 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 
+/**
+ * Class for loading saved replays and playing them
+ */
 public class replay {
     int state; //0 = not started, 1 = in progress, 2 = paused, 3 = finished
     boolean forward; //true = forward, false = backward
@@ -209,6 +212,7 @@ public class replay {
             return;
         }
         while (tmp_string != null || tmp_string != "\n" || tmp_string != ""){
+            // Player position
             String player_position = "";
             while (!tmp_string.equals("!")) {
                 player_position = tmp_string;
@@ -217,19 +221,21 @@ public class replay {
                     return;
                 }
             }
+            // Steps
             tmp_string = reader.readLine();
             String player_step = "";
             while (!tmp_string.equals("!")) {
                 player_step = tmp_string;
                 tmp_string = reader.readLine();
             }
-            //key changes 3752
+            // Keys
             tmp_string = reader.readLine();
             String key_changes = "";
             while (!tmp_string.equals("!")) {
                 key_changes = tmp_string;
                 tmp_string = reader.readLine();
             }
+            // Cherries
             tmp_string = reader.readLine();
             String cherry_changes = "";
             while (!tmp_string.equals("!")) {

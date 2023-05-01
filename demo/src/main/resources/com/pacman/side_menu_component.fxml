@@ -4,7 +4,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="side_menu_cont" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" style="-fx-background-color: #DDDDDD;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.menu_controller">
+<VBox fx:id="side_menu_cont" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" style="-fx-background-color: #DDDDDD;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.pacman.menu_controller">
    <children>
       <Button fx:id="ham_button" focusTraversable="false" graphicTextGap="20.0" maxWidth="200.0" minWidth="55.0" mnemonicParsing="false" onAction="#animate_hamb_button" prefHeight="60.0" prefWidth="200.0" style="-fx-alignment: center-left;" text="Show/Close menu">
          <graphic>

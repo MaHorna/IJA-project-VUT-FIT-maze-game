@@ -1,15 +1,16 @@
 /**
- * @author Matej Horňanský
  * @author Dávid Kán
  *
- * Utility class for saving step vaiables
+ * Utility class for saving step variables
  */
-package com.example;
+package com.pacman;
 
 import java.util.List;
 
+/**
+ * Utility class for saving step variables
+ */
 public class step {
-
    List<String> ghosts;
     String player;
     String key_changes;

@@ -1,0 +1,12 @@
+11 17
+K......XXX......K
+.XXXXX.....XXXXX.
+.X..X..X.X..X..X.
+.X....XX.XX....X.
+.XXXX.XX.XX.XXXX.
+......GGTGG......
+.XXXX.XX.XX.XXXX.
+.X....XX.XX....X.
+.XS.X..X.X..X..X.
+.XXXXX.....XXXXX.
+K......XXX......K

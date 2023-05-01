@@ -5,21 +5,21 @@
  * Class for loading map and simulating steps
  */
 
-package com.example;
+package com.pacman;
 
 import java.util.*;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.FileReader;
 
+/**
+ * Class for loading map and simulating steps
+ */
 public class game {
     int state; //0 = not started, 1 = in progress, 2 = paused, 3 = finished
     String file_path;
@@ -38,6 +38,11 @@ public class game {
     Timeline timeline;
     double play_time = 0;
 
+    /**
+     *
+     * @param file_path
+     * @throws IOException
+     */
     public game(String file_path) throws IOException {
         this.file_path = file_path;
         game_load_from_file(file_path);
@@ -50,8 +55,6 @@ public class game {
         if (row_data.length != width) {
             System.out.println("Declared map size mismatch (columns)");
         }
-        board[0][row_index] = '.'; //adds left border
-        board[1][row_index] = 'X'; //adds left border
         for (int i = 2; i < width+2; i++) {
             char c = row_data[i-2];
             if (c == 'S') { //start
@@ -72,8 +75,6 @@ public class game {
             }
             board[row_index][i] = c; //content
         }
-        board[width+2][row_index] = 'X'; //adds right border
-        board[width+3][row_index] = '.'; //adds right border
     }
 
     void game_load_from_file(String file_path) throws IOException {
@@ -87,17 +88,17 @@ public class game {
                 System.out.println("Invalid file format");
             }
             board = new char[height+4][width+4]; //init board
-            for (int i = 0; i < width+4; i++) { //adds top and bottom border
+            for (int i = 0; i < height+4; i++) { //adds top and bottom border
                 board[i][0] = '.';
-                if (i == 0 || i == width+3) {
+                if (i == 0 || i == height+3) {
                     board[i][1] = '.';
-                    board[i][height+2] = '.';
+                    board[i][width+2] = '.';
                 }
                 else {
                     board[i][1] = 'X';
-                    board[i][height+2] = 'X';
+                    board[i][width+2] = 'X';
                 }
-                board[i][height+3] = '.';
+                board[i][width+3] = '.';
             }
             String tmp_string = ""; //tmp string for reading
             int row_index = 0;
@@ -115,6 +116,13 @@ public class game {
             }
             if (row_index<height) { //less rows than declared
                 System.out.println("Declared map size mismatch (less rows)");
+            }
+            for (int i = 2; i < width+2; i++){
+
+                board[0][i] = '.'; //adds left border
+                board[1][i] = 'X'; //adds left border
+                board[height+2][i] = 'X'; //adds right border
+                board[height+3][i] = '.'; //adds right border
             }
         }
         else {

@@ -1,11 +1,13 @@
 /**
  * @author Matej Horňanský
- * @author Dávid Kán
  *
  * Utility class for replay
  */
-package com.example;
+package com.pacman;
 
+/**
+ * Utility class for replay
+ */
 public class replay_holder {
     public replay replay;
     private final static replay_holder INSTANCE = new replay_holder();

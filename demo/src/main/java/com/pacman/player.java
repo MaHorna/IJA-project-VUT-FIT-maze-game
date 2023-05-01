@@ -5,7 +5,7 @@
  * Class for player object
  */
 
-package com.example;
+package com.pacman;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -14,6 +14,9 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+/**
+ * Class for storing player object information and its manipulation.
+ */
 public class player {
     public double x; //start of board is (0,0) , middle of first cell is (0.5, 0.5), first cell ends at (1,1) , this way we can have linear motion on board
     public double y;
@@ -21,10 +24,9 @@ public class player {
     public int next_direction; // 0 = up, 1 = right, 2 = down, 3 = left
     public ImageView image_view;
     public Label score_label, time_label, step_label;
-    public int score;
-    public int step = 0;
-    double prev_x = 0, prev_y = 0;
-    double played_time;
+    private int score;
+    private int step = 0;
+    private double prev_x = 0, prev_y = 0;
     public Pane game_pane_hold;
     public HBox Hbox_main;
 
@@ -36,6 +38,10 @@ public class player {
         score = 0;
     }
 
+    /**
+     * Counts player steps. Only in middle tile.
+     * @param game current game
+     */
     public void player_step(game game){
         if(((x%1 < 0.02) || (x%1 > 0.98)) && ((y%1 < 0.02) || (y%1 > 0.98))) {
             if (prev_x != x || prev_y != y){
@@ -48,11 +54,18 @@ public class player {
         }
     }
 
+    /**
+     * Sets time on game screen.
+     * @param time current time
+     */
     public void set_time(double time){
-        played_time = time;
         time_label.setText("Time: " + time);
     }
 
+    /**
+     * Moves player object
+     * @param game current game
+     */
     public void player_move(game game) {
         boolean is_in_middle_of_tile = false;
         int col_index = (int) Math.round(x);
@@ -93,6 +106,14 @@ public class player {
         }
     }
 
+    /**
+     * Checks if wall is in player/ghost direction
+     * @param y position of wall
+     * @param x position of wall
+     * @param dir direction object is facing
+     * @param game current game
+     * @return
+     */
     public static boolean check_if_wall_in_dir(int y, int x, int dir, game game) {
         if (dir == 0) {
             y -= 1;
@@ -109,10 +130,14 @@ public class player {
         return check_if_object_in_tile(y, x, game, 'X');
     }
 
-    public static boolean check_if_object_in_tile(int y, int x, game game, char tile) {
+    private static boolean check_if_object_in_tile(int y, int x, game game, char tile) {
         return game.board[y][x] == tile;
     }
-    
+
+    /**
+     * Checks if player hit key object and removes it
+     * @param game current game
+     */
     public void player_check_keys(game game) {
         int col_index = (int) Math.round(x);
         int row_index = (int) Math.round(y);
@@ -127,6 +152,10 @@ public class player {
         }
     }
 
+    /**
+     *  Checks if player hit a cherry and removes it
+     * @param game current game
+     */
     public void player_check_cherries(game game) {
         int col_index = (int) Math.round(x);
         int row_index = (int) Math.round(y);
@@ -142,6 +171,11 @@ public class player {
             }
         }
     }
+
+    /**
+     * Checks if player hit goal and if game can be ended
+     * @param game current game
+     */
     public void player_check_end(game game) {
         int col_index = (int) Math.round(x);
         int row_index = (int) Math.round(y);
@@ -163,6 +197,11 @@ public class player {
             }
         }
     }
+
+    /**
+     * Checks if player object hit ghost object. If player hit ghost game ends
+     * @param game current game
+     */
     public void player_check_ghosts(game game) {
         int col_index = (int) Math.round(x);
         int row_index = (int) Math.round(y);

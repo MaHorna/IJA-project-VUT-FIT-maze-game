@@ -4,7 +4,7 @@
  *
  * Controller class, functions for buttons form side menu panel
  */
-package com.example;
+package com.pacman;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,6 +17,9 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.application.Platform;
 
+/**
+ * Controller class, functions for buttons from side menu panel
+ */
 public class menu_controller {
     private game_holder game_singleton = game_holder.get_instance(); 
     private replay_holder replay_singleton = replay_holder.get_instance();
@@ -85,7 +88,7 @@ public class menu_controller {
         }
     }
     
-    @FXML public void load_custom_map_button() throws IOException { //game controller loads game from file
+    @FXML private void load_custom_map_button() throws IOException { //game controller loads game from file
         FileChooser fileChooser = new FileChooser();
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home") + System.getProperty("file.separator")+ "Documents"));
         fileChooser.setTitle("Open Game File");

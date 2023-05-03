@@ -23,6 +23,8 @@ Preklad a spustenie:
 
     Spustenie:
         java -cp .\target\demo-1.0-SNAPSHOT.jar com.pacman.App
+       alebo
+        mvn clean javafx:run
 
     Generovanie dokumentacie:
         mvn site

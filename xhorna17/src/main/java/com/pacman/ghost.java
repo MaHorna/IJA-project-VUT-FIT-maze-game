@@ -24,7 +24,7 @@ public class ghost {
     }
 
     /**
-     * Moves ghosts
+     * Moves ghosts object in current direction
      * @param game current game
      */
     public void ghost_move(game game) {

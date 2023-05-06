@@ -42,6 +42,10 @@ public class game_controller {
         game.player.Hbox_main = view_controller.getHbox_main();
     }
 
+    /**
+     * Draws objects on pane
+     * @param game current game
+     */
     void draw_objects(game game) {
         if (game.start != null) {
             ImageView player_view = new ImageView(new Image(getClass().getResource("images/game/pacman.png").toString(), cell_size, cell_size, true, true));
@@ -116,7 +120,12 @@ public class game_controller {
         game_pane_hold.getChildren().add(step_label);
         game.player.step_label = step_label;
     }
-    
+
+    /**
+     * Function for key input
+     * @param event key input
+     * @throws IOException
+     */
     @FXML private void key_pressed_event(KeyEvent event) throws IOException{
         player player = game.player;
         int next_dir = -1;

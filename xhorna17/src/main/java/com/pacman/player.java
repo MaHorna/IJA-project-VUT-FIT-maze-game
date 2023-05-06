@@ -63,7 +63,7 @@ public class player {
     }
 
     /**
-     * Moves player object
+     * Moves player object in current direction
      * @param game current game
      */
     public void player_move(game game) {

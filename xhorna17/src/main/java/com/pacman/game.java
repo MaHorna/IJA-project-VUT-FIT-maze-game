@@ -38,11 +38,6 @@ public class game {
     Timeline timeline;
     double play_time = 0;
 
-    /**
-     *
-     * @param file_path
-     * @throws IOException
-     */
     public game(String file_path) throws IOException {
         this.file_path = file_path;
         game_load_from_file(file_path);

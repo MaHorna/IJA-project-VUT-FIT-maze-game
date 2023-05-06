@@ -5,6 +5,9 @@
  */
 package com.pacman;
 
+/**
+ * Home controller
+ */
 public class home_controller {
 
 }

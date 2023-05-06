@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="home_pane_vbox" alignment="CENTER" prefHeight="697.0" prefWidth="864.0" style="-fx-background-color: BLACK;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pacman.home_controller">
+   <children>
+      <ImageView fitHeight="818.0" fitWidth="918.0" nodeOrientation="INHERIT" pickOnBounds="true" VBox.vgrow="ALWAYS">
+         <image>
+            <Image url="@images/pac_man_screen.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</VBox>

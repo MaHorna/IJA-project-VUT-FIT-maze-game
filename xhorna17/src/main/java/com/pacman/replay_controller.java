@@ -2,7 +2,7 @@
  * @author Matej Horňanský
  * @author Dávid Kán
  *
- * Controller class used for drawing objects, functions for buttons and listenning for input
+ * Controller class used for drawing objects, functions for buttons and listening for input
  */
 
 package com.pacman;
@@ -25,7 +25,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 /**
- * Controller class used for drawing objects, functions for buttons and listenning for input
+ * Controller class used for drawing objects, functions for buttons and listening for input
  */
 public class replay_controller {
     @FXML public ToggleButton replay_step;
